@@ -23,3 +23,11 @@ models/*.joblib
 models/*.pkl
 
 *.png
+# Image dataset
+data/fashion-product-images-small/
+
+# Trained computer vision models
+models/*.keras
+
+# Generated evaluation images
+models/confusion_matrix.png

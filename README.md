@@ -651,6 +651,30 @@ Compared the Day 5 ANN with the Day 4 XGBoost champion using:
 - day5_training_history.npz
 - day5_model_comparison.csv
 
+# Day 6 - CNN Image Classification
+
+### Objective
+Build a computer vision module to automatically classify fashion product images.
+
+### 1. Fashion-MNIST Prototype
+- Loaded Fashion-MNIST using Keras.
+- Normalized image pixel values.
+- Built a CNN using Conv2D, MaxPooling2D, Dropout and Dense layers.
+- Evaluated the prototype.
+
+### 2. Fashion Product Image Classification
+- Loaded product images and their category labels.
+- Resized images to a consistent dimension.
+- Applied image augmentation.
+- Trained a CNN classifier.
+
+### 3. Evaluation
+- Accuracy: To be updated
+- Generated confusion matrix.
+- Analyzed category-wise classification performance.
+
+### 4. Saved Model
+- models/fashion_cnn.keras
 # Installation and Execution
 
 ## 1. Clone the Repository
