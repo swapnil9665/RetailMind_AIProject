@@ -675,6 +675,139 @@ Build a computer vision module to automatically classify fashion product images.
 
 ### 4. Saved Model
 - models/fashion_cnn.keras
+
+
+# Day 7 – Transfer Learning & Object Detection
+
+## Objective
+
+Improve product image classification using Transfer Learning with pretrained deep learning models. The objective is to replace the CNN built from scratch in Day 6 with a pretrained VGG16 model and compare its performance.
+
+The assignment also introduces object detection using YOLO to detect and locate products in catalog images.
+
+## Dataset
+
+**Dataset:** Fashion Product Images
+
+**Source:** [Kaggle – Fashion Product Images Small](https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small)
+
+The dataset contains:
+- Product images stored in the `images/` directory.
+- `styles.csv` containing product metadata such as product ID, master category, and article type.
+
+The `masterCategory` column is used as the target label for image classification.
+
+## Technologies & Libraries
+
+- Python
+- TensorFlow / Keras
+- VGG16 (ImageNet pretrained weights)
+- NumPy
+- Pandas
+- Scikit-learn
+
+## Implementation
+
+All Day 7 implementation is maintained in a single Python file:
+
+`src/Day7_transfer_learning.py`
+
+### 1. Data Preparation
+
+- Loaded product metadata from `styles.csv`.
+- Removed records with missing labels or invalid image IDs.
+- Verified that corresponding image files exist.
+- Encoded product categories using LabelEncoder.
+- Divided the dataset into training, validation, and testing sets.
+
+### 2. Transfer Learning with VGG16
+
+Used the pretrained VGG16 architecture with ImageNet weights.
+
+Instead of training the entire network from scratch:
+
+- Loaded VGG16 without its original classification layer.
+- Froze the pretrained convolutional layers.
+- Added a new classification head using Global Average Pooling, Dense, and Dropout layers.
+- Trained the new classification head for product category prediction.
+
+### 3. Fine-Tuning
+
+After training the classification head:
+
+- Unfroze the top layers of VGG16.
+- Kept the remaining pretrained layers frozen.
+- Used a smaller learning rate for fine-tuning.
+- Used EarlyStopping to help prevent unnecessary training.
+
+### 4. Model Evaluation
+
+Evaluated the trained VGG16 model on the test dataset using classification accuracy.
+
+The Day 7 model is also compared against the CNN model developed in Day 6 to understand the impact of transfer learning on product classification performance.
+
+### 5. Model Saving
+
+The trained model is saved at:
+
+`models/fashion_vgg16.keras`
+
+## Object Detection – Not Implemented
+
+The assignment also required product detection and localization using a pretrained YOLO model.
+
+However, the provided Fashion Product Images dataset contains image-level classification labels through `styles.csv`. It does not provide bounding-box annotations that specify the location and dimensions of products within images.
+
+YOLO object detection training requires bounding-box annotations containing:
+
+- Class ID
+- Bounding-box center X coordinate
+- Bounding-box center Y coordinate
+- Bounding-box width
+- Bounding-box height
+
+Since these annotations were not available in the provided dataset, custom YOLO training and proper detection evaluation could not be performed.
+
+Therefore, the Day 7 implementation focuses on transfer learning using VGG16 for product image classification.
+
+**Not implemented:**
+- Custom YOLO object detector training.
+- Bounding-box prediction and product localization.
+- Object detection evaluation.
+
+**Future Improvement:** Use a dataset containing bounding-box annotations or manually annotate product images to implement and evaluate YOLO-based object detection.
+
+Note: A pretrained YOLO model can perform inference without custom annotations, but annotations are needed for supervised training and proper evaluation against ground truth.
+
+## Results
+
+| Metric | Result |
+|---|---|
+| Day 6 CNN Test Accuracy | Pending execution |
+| Day 7 VGG16 Test Accuracy | Pending execution |
+| Model Comparison | Pending execution |
+
+Actual accuracy values will be updated after successfully training and evaluating both models.
+
+## Final Outcome
+
+- Implemented a transfer-learning workflow using pretrained VGG16.
+- Added a custom classification head for product category prediction.
+- Implemented fine-tuning of the top pretrained layers.
+- Prepared evaluation and comparison with the Day 6 CNN.
+- Saved the upgraded model as `fashion_vgg16.keras` after successful training.
+- Documented the limitation preventing YOLO object detection implementation due to missing bounding-box annotations.
+
+## Project File
+
+`src/Day7_transfer_learning.py`
+
+
+
+
+
+
+
 # Installation and Execution
 
 ## 1. Clone the Repository
